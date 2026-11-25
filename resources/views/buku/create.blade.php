@@ -15,7 +15,6 @@
 
         <div class="card shadow-sm">
             <div class="card-body p-4">
-                {{-- TODO 7: Tambahkan atribut enctype="multipart/form-data" pada form di bawah ini --}}
                 <form action="{{ route('buku.store') }}" method="POST">
                     @csrf
 
@@ -54,7 +53,7 @@
                             @enderror
                         </div>
 
-                        <div class="col-md-6 mb-3">
+                        <div class="col-md-6 mb-4">
                             <label for="stok" class="form-label fw-semibold">Jumlah Stok <span class="text-danger">*</span></label>
                             <input type="number" min="0" class="form-control @error('stok') is-invalid @enderror" id="stok" name="stok" value="{{ old('stok', 1) }}" placeholder="0" required>
                             @error('stok')
@@ -62,8 +61,6 @@
                             @enderror
                         </div>
                     </div>
-
-                    {{-- TODO 7: Tambahkan field input file untuk upload sampul buku dan wadah pratinjau (preview) gambar --}}
 
                     <div class="d-flex justify-content-end gap-2">
                         <a href="{{ route('buku.index') }}" class="btn btn-light border px-4">Batal</a>
@@ -76,19 +73,4 @@
         </div>
     </div>
 </div>
-
-<script>
-    function previewImage(event) {
-        var input = event.target;
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                var preview = document.getElementById('imagePreview');
-                preview.src = e.target.result;
-                preview.classList.remove('d-none');
-            };
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-</script>
 @endsection

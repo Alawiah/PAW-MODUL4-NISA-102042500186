@@ -12,12 +12,11 @@ class Buku extends Model
     protected $table = 'buku';
 
     protected $fillable = [
-        'judul',
+         'judul',
         'penulis',
         'penerbit',
         'tahun_terbit',
         'stok',
-        // TODO 2: Tambahkan kolom 'cover' pada properti $fillable
     ];
 
     public function peminjaman()

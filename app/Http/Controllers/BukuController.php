@@ -84,27 +84,23 @@ class BukuController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'judul'        => 'required|string|max:100',
-            'penulis'      => 'required|string|max:100',
-            'penerbit'     => 'required|string|max:100',
+            'judul' => 'required|max:100',
+            'penulis' => 'required|max:100',
+            'penerbit' => 'required|max:100',
             'tahun_terbit' => 'required|integer',
-            'stok'         => 'required|integer|min:0',
-            // TODO 4: Tambahkan validasi untuk berkas 'cover' (nullable|image|mimes:jpeg,png,jpg|max:2048)
+            'stok' => 'required|integer|min:0',
         ], [
-            'judul.required'        => 'Judul buku wajib diisi.',
-            'judul.max'             => 'Judul buku maksimal 100 karakter.',
-            'penulis.required'      => 'Penulis buku wajib diisi.',
-            'penulis.max'           => 'Penulis buku maksimal 100 karakter.',
-            'penerbit.required'     => 'Penerbit buku wajib diisi.',
-            'penerbit.max'          => 'Penerbit buku maksimal 100 karakter.',
+            'judul.required' => 'Judul buku wajib diisi.',
+            'judul.max' => 'Judul buku maksimal 100 karakter.',
+            'penulis.required' => 'Penulis buku wajib diisi.',
+            'penulis.max' => 'Penulis buku maksimal 100 karakter.',
+            'penerbit.required' => 'Penerbit buku wajib diisi.',
+            'penerbit.max' => 'Penerbit buku maksimal 100 karakter.',
             'tahun_terbit.required' => 'Tahun terbit wajib diisi.',
-            'tahun_terbit.integer'  => 'Tahun terbit harus berupa angka.',
-            'stok.required'         => 'Stok buku wajib diisi.',
-            'stok.integer'          => 'Stok buku harus berupa angka.',
-            'stok.min'              => 'Stok buku tidak boleh kurang dari 0.',
-            'cover.image'           => 'Berkas yang diunggah harus berupa gambar.',
-            'cover.mimes'           => 'Format gambar harus JPG, JPEG, atau PNG.',
-            'cover.max'             => 'Ukuran gambar maksimal 2 MB.',
+            'tahun_terbit.integer' => 'Tahun terbit harus berupa angka.',
+            'stok.required' => 'Stok buku wajib diisi.',
+            'stok.integer' => 'Stok buku harus berupa angka.',
+            'stok.min' => 'Stok buku tidak boleh kurang dari 0.',
         ]);
 
         // TODO 4: Periksa jika ada berkas 'cover' yang diunggah ($request->hasFile('cover')),
@@ -140,34 +136,28 @@ class BukuController extends Controller
     public function update(Request $request, Buku $buku)
     {
         $validated = $request->validate([
-            'judul'        => 'required|string|max:100',
-            'penulis'      => 'required|string|max:100',
-            'penerbit'     => 'required|string|max:100',
+            'judul' => 'required|max:100',
+            'penulis' => 'required|max:100',
+            'penerbit' => 'required|max:100',
             'tahun_terbit' => 'required|integer',
-            'stok'         => 'required|integer|min:0',
-            // TODO 4: Tambahkan validasi untuk berkas 'cover' (nullable|image|mimes:jpeg,png,jpg|max:2048)
+            'stok' => 'required|integer|min:0',
         ], [
-            'judul.required'        => 'Judul buku wajib diisi.',
-            'judul.max'             => 'Judul buku maksimal 100 karakter.',
-            'penulis.required'      => 'Penulis buku wajib diisi.',
-            'penulis.max'           => 'Penulis buku maksimal 100 karakter.',
-            'penerbit.required'     => 'Penerbit buku wajib diisi.',
-            'penerbit.max'          => 'Penerbit buku maksimal 100 karakter.',
+            'judul.required' => 'Judul buku wajib diisi.',
+            'judul.max' => 'Judul buku maksimal 100 karakter.',
+            'penulis.required' => 'Penulis buku wajib diisi.',
+            'penulis.max' => 'Penulis buku maksimal 100 karakter.',
+            'penerbit.required' => 'Penerbit buku wajib diisi.',
+            'penerbit.max' => 'Penerbit buku maksimal 100 karakter.',
             'tahun_terbit.required' => 'Tahun terbit wajib diisi.',
-            'tahun_terbit.integer'  => 'Tahun terbit harus berupa angka.',
-            'stok.required'         => 'Stok buku wajib diisi.',
-            'stok.integer'          => 'Stok buku harus berupa angka.',
-            'stok.min'              => 'Stok buku tidak boleh kurang dari 0.',
-            'cover.image'           => 'Berkas yang diunggah harus berupa gambar.',
-            'cover.mimes'           => 'Format gambar harus JPG, JPEG, atau PNG.',
-            'cover.max'             => 'Ukuran gambar maksimal 2 MB.',
+            'tahun_terbit.integer' => 'Tahun terbit harus berupa angka.',
+            'stok.required' => 'Stok buku wajib diisi.',
+            'stok.integer' => 'Stok buku harus berupa angka.',
+            'stok.min' => 'Stok buku tidak boleh kurang dari 0.',
         ]);
 
         // TODO 5: Periksa jika ada berkas 'cover' baru yang diunggah:
         // 1. Hapus berkas cover fisik lama dari Storage::disk('public') jika ada
         // 2. Simpan berkas cover baru ke folder 'buku' pada disk 'public' dan simpan ke $validated['cover']
-
-        $buku->update($validated);
 
         return redirect()->route('buku.index')
             ->with('success', 'Buku berhasil diperbarui!');

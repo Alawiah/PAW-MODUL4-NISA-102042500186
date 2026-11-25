@@ -15,7 +15,6 @@
 
         <div class="card shadow-sm">
             <div class="card-body p-4">
-                {{-- TODO 8: Tambahkan atribut enctype="multipart/form-data" pada form di bawah ini --}}
                 <form action="{{ route('buku.update', $buku->id) }}" method="POST">
                     @csrf
                     @method('PUT')
@@ -55,7 +54,7 @@
                             @enderror
                         </div>
 
-                        <div class="col-md-6 mb-3">
+                        <div class="col-md-6 mb-4">
                             <label for="stok" class="form-label fw-semibold">Jumlah Stok <span class="text-danger">*</span></label>
                             <input type="number" min="0" class="form-control @error('stok') is-invalid @enderror" id="stok" name="stok" value="{{ old('stok', $buku->stok) }}" required>
                             @error('stok')
@@ -63,8 +62,6 @@
                             @enderror
                         </div>
                     </div>
-
-                    {{-- TODO 8: Tampilkan gambar sampul saat ini ($buku->cover) dan sediakan input file untuk mengganti sampul --}}
 
                     <div class="d-flex justify-content-end gap-2">
                         <a href="{{ route('buku.index') }}" class="btn btn-light border px-4">Batal</a>
@@ -78,4 +75,3 @@
     </div>
 </div>
 @endsection
-
